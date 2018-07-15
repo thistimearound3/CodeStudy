@@ -1,0 +1,45 @@
+{% extends "site/generic_base.html" %}
+
+{% block content %}
+<div id="accounts">
+<center>Accounts</center>
+<hr>
+{% for account in account_list %}
+<div id="account">
+<table cellpadding="3">
+    <tr>
+        <td colspan='2'><a href='{{ account.get_absolute_url }}'>{{ account.name }}</a></td>
+        <td>$ {{ account.balance }}</td>
+    </tr>
+    <tr>
+        <td><a href="{{ account.get_trans_from_url }}">Send Funds From</a></td>
+        <td><a href="{{ account.get_trans_to_url }}">Send Funds To</a></td>
+        <td><a href="{{ account.get_absolute_url }}">Details</a></td>
+    </tr>
+</table>
+</div>
+<hr>
+{% endfor %}
+<a href="{% url 'bank_account_create' %}">Create new Account</a> | <a href="{% url 'bank_trans_create' %}">Transfer Funds</a>
+</div><!-- End account Div -->
+<div id="space"></div>
+
+<div id="transactions">
+<table border="1">
+<tr>
+    <th>Date</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+</tr>
+{% for transaction in transaction_list %}
+    <tr>
+        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.from_account }}</td>
+        <td>{{ transaction.to_account }}</td>
+        <td>{{ transaction.amount }}</td>
+    </tr>
+{% endfor %}
+</table>
+</div> <!-- End of transactions div-->
+{% endblock %}

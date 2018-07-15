@@ -1,0 +1,12 @@
+-r requirements.txt
+aioresponses
+asynctest
+codecov
+flake8
+pytest
+pytest-asyncio
+pytest-cov
+responses
+Sphinx
+twine
+wheel
